@@ -6,7 +6,7 @@ import config.variables as var
 
 def call_mysql(db, table, q):
     try:
-        engine = create_engine(f"mysql+pymysql://{var.user}:{var.password}@127.0.0.1/{db}")
+        engine = create_engine(f"mysql+pymysql://{var.USER}:{var.PASSWORD}@{var.HOST}:{var.PORT}/{db}")
         if q == '*':
             query = f"SELECT * FROM {table};"
         else:
@@ -19,5 +19,5 @@ def call_mysql(db, table, q):
 
 
 def upload_sql(db, table, data):
-    engine = create_engine(f"mysql+pymysql://{var.user}:{var.password}@127.0.0.1/{db}")
+    engine = create_engine(f"mysql+pymysql://{var.USER}:{var.PASSWORD}@{var.HOST}:{var.PORT}/{db}")
     data.to_sql(name = table, con = engine, if_exists="replace", index=False)
